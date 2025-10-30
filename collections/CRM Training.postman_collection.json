@@ -1,0 +1,1118 @@
+{
+	"info": {
+		"_postman_id": "0a9857ba-2c26-4e8b-a5e4-3ffbf815809b",
+		"name": "CRM Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "6429092"
+	},
+	"item": [
+		{
+			"name": "GET TOKEN CRM",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"var json = JSON.parse(pm.response.text());\r",
+							"if (json.access_token !== ''){\r",
+							"    pm.collectionVariables.set(\"CRMToken\", json.access_token);\r",
+							"}\r",
+							"\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "",
+							"type": "text"
+						},
+						{
+							"key": "resource",
+							"value": "{{URLBase}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://login.microsoftonline.com/{{TenantId}}/oauth2/token",
+					"protocol": "https",
+					"host": [
+						"login",
+						"microsoftonline",
+						"com"
+					],
+					"path": [
+						"{{TenantId}}",
+						"oauth2",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EntityDefinition  Lookups",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/EntityDefinitions(LogicalName='product')/Attributes/Microsoft.Dynamics.CRM.LookupAttributeMetadata?$select=LogicalName,SchemaName,Targets,DisplayName",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"EntityDefinitions(LogicalName='product')",
+						"Attributes",
+						"Microsoft.Dynamics.CRM.LookupAttributeMetadata"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "LogicalName,SchemaName,Targets,DisplayName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EntityDefinition Attributes",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/EntityDefinitions(LogicalName='salesorderdetail')/Attributes",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"EntityDefinitions(LogicalName='salesorderdetail')",
+						"Attributes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EntityDefinition PickList",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/EntityDefinitions(LogicalName='salesorder')/Attributes/Microsoft.Dynamics.CRM.PicklistAttributeMetadata?$select=LogicalName,SchemaName,DisplayName",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"EntityDefinitions(LogicalName='salesorder')",
+						"Attributes",
+						"Microsoft.Dynamics.CRM.PicklistAttributeMetadata"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "LogicalName,SchemaName,DisplayName"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CustomerGroup",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/msdyn_customergroups",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"msdyn_customergroups"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Account",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts(fe6aada9-45a9-f011-bbd3-002248095ea3)",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts(fe6aada9-45a9-f011-bbd3-002248095ea3)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Account",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountnumber\": \"ERP022\",\r\n  \"name\": \"Julio Juarez\",\r\n  \"exchangerate\": 1.25,\r\n  \"emailaddress1\": \"maria.gonzalez@email.com\",\r\n  \"telephone1\": \"+502-5321-4571\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01001\",\r\n  \"creditlimit\": 50000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Account",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountnumber\": \"ERP022\",\r\n  \"name\": \"Julio Juarez\",\r\n  \"exchangerate\": 1.25,\r\n  \"emailaddress1\": \"julio .gonzalez@email.com\",\r\n  \"telephone1\": \"+502-5321-4571\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01001\",\r\n  \"creditlimit\": 50000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts(28f5ec3c-ddaa-f011-bbd3-0022480a13b8)",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts(28f5ec3c-ddaa-f011-bbd3-0022480a13b8)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Account",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"accountnumber\": \"ERP022\",\r\n  \"name\": \"Julio Juarez\",\r\n  \"exchangerate\": 1.25,\r\n  \"emailaddress1\": \"julio .gonzalez@email.com\",\r\n  \"telephone1\": \"+502-5321-4571\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01001\",\r\n  \"creditlimit\": 50000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts(28f5ec3c-ddaa-f011-bbd3-0022480a13b8)",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts(28f5ec3c-ddaa-f011-bbd3-0022480a13b8)"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Accounts Copy",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/accounts",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BulkCreate",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/mixed;boundary=batch_36522ad7-fc75-4b56-8c71-56071383e77b",
+						"type": "text"
+					},
+					{
+						"key": "OData-MaxVersion",
+						"value": "4.0",
+						"type": "text"
+					},
+					{
+						"key": "OData-Version",
+						"value": "4.0",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "--batch_36522ad7-fc75-4b56-8c71-56071383e77b\r\nContent-Type: multipart/mixed;boundary=changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\nContent-ID: 1\r\n\r\nPOST {{URLBase}}/api/data/v9.2/accounts HTTP/1.1\r\nContent-Type: application/json\r\n\r\n{\r\n  \"accountnumber\": \"ERP024\",\r\n  \"name\": \"Julio Juarez\",\r\n  \"exchangerate\": 1.25,\r\n  \"emailaddress1\": \"julio.juarez@email.com\",\r\n  \"telephone1\": \"+502-5321-4571\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01001\",\r\n  \"creditlimit\": 50000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\nContent-ID: 2\r\n\r\nPOST {{URLBase}}/api/data/v9.2/accounts HTTP/1.1\r\nContent-Type: application/json\r\n\r\n{\r\n  \"accountnumber\": \"ERP025\",\r\n  \"name\": \"Maria Gonzalez Lopez\",\r\n  \"exchangerate\": 1.30,\r\n  \"emailaddress1\": \"maria.gonzalez@email.com\",\r\n  \"telephone1\": \"+502-4455-7788\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01010\",\r\n  \"creditlimit\": 75000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1--\r\n\r\n--batch_36522ad7-fc75-4b56-8c71-56071383e77b--",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/$batch",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"$batch"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "BulkUpdate",
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "tokenName",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "useBrowser",
+							"value": true,
+							"type": "boolean"
+						},
+						{
+							"key": "clientId",
+							"value": "49fe4887-3bdc-4446-b07d-0ee5aaf98413",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "https://login.microsoftonline.com/common/oauth2/authorize",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "implicit",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "clientSecret",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "client_authentication",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "multipart/mixed;boundary=batch_36522ad7-fc75-4b56-8c71-56071383e77b",
+						"type": "text"
+					},
+					{
+						"key": "OData-MaxVersion",
+						"value": "4.0",
+						"type": "text"
+					},
+					{
+						"key": "OData-Version",
+						"value": "4.0",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "--batch_36522ad7-fc75-4b56-8c71-56071383e77b\r\nContent-Type: multipart/mixed;boundary=changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\nContent-ID: 1\r\n\r\nPATCH {{URLBase}}/api/data/v9.2/accounts(bb13ab76-21b5-f011-bbd3-000d3a5ba373) HTTP/1.1\r\nContent-Type: application/json\r\n\r\n{\r\n  \"name\": \"Julio Juarez\",\r\n  \"exchangerate\": 1.25,\r\n  \"emailaddress1\": \"julio.juarez@email.com\",\r\n  \"telephone1\": \"+502-5321-4571\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01001\",\r\n  \"creditlimit\": 150000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1\r\nContent-Type: application/http\r\nContent-Transfer-Encoding: binary\r\nContent-ID: 2\r\n\r\nPATCH {{URLBase}}/api/data/v9.2/accounts(1014ab76-21b5-f011-bbd3-000d3a5ba373) HTTP/1.1\r\nContent-Type: application/json\r\n\r\n{\r\n  \"name\": \"Maria Gonzalez Lopez\",\r\n  \"exchangerate\": 1.30,\r\n  \"emailaddress1\": \"maria.gonzalez@email.com\",\r\n  \"telephone1\": \"+502-4455-7788\",\r\n  \"address1_country\": \"Guatemala\",\r\n  \"address1_postalcode\": \"01010\",\r\n  \"creditlimit\": 175000.00,\r\n  \"paymenttermscode\": 1,\r\n  \"creditonhold\": false,\r\n  \"transactioncurrencyid@odata.bind\": \"/transactioncurrencies(aeb94f34-c08d-f011-b4cc-000d3a30c806)\"\r\n}\r\n\r\n--changeset_77162fcd-b8da-41a9-a9d8-f9e83f0f3aa1--\r\n\r\n--batch_36522ad7-fc75-4b56-8c71-56071383e77b--",
+					"options": {
+						"raw": {
+							"language": "text"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{URLBase}}/api/data/v9.2/$batch",
+					"host": [
+						"{{URLBase}}"
+					],
+					"path": [
+						"api",
+						"data",
+						"v9.2",
+						"$batch"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "TenantId",
+			"value": ""
+		},
+		{
+			"key": "URLBase",
+			"value": ""
+		},
+		{
+			"key": "CRMToken",
+			"value": ""
+		}
+	]
+}
