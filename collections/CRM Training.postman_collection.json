@@ -390,7 +390,7 @@
 			"response": []
 		},
 		{
-			"name": "Account",
+			"name": "Account con filter y select",
 			"request": {
 				"auth": {
 					"type": "oauth2",
@@ -450,7 +450,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{URLBase}}/api/data/v9.2/accounts(fe6aada9-45a9-f011-bbd3-002248095ea3)",
+					"raw": "{{URLBase}}/api/data/v9.2/accounts?$select=accountnumber,name&$filter=accountnumber eq 'ERP001'",
 					"host": [
 						"{{URLBase}}"
 					],
@@ -458,7 +458,17 @@
 						"api",
 						"data",
 						"v9.2",
-						"accounts(fe6aada9-45a9-f011-bbd3-002248095ea3)"
+						"accounts"
+					],
+					"query": [
+						{
+							"key": "$select",
+							"value": "accountnumber,name"
+						},
+						{
+							"key": "$filter",
+							"value": "accountnumber eq 'ERP001'"
+						}
 					]
 				}
 			},
